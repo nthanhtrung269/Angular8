@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Hello World';
+  DepScreen = false;
+  EmpScreen = false;
 }

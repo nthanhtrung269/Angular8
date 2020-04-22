@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
 import { EmployeeComponent } from './employee/employee.component';
 import { ShowEmpComponent } from './employee/show-emp/show-emp.component';
 import { EditEmpComponent } from './employee/edit-emp/edit-emp.component';
@@ -34,7 +38,10 @@ import { DepartmentService } from 'src/app/services/department.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [EmployeeService, DepartmentService],
   bootstrap: [AppComponent]
