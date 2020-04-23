@@ -13,6 +13,6 @@ export class DepartmentService {
   readonly APIUrl = "https://localhost:44351/api";
 
   getDepList(): Observable<Department[]> {
-    return this.http.get<Department[]>(this.APIUrl + "/deparment");
+    return this.http.get<Department[]>(this.APIUrl + "/department");
   }
 }

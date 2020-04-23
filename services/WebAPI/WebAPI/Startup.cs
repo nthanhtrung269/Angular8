@@ -11,51 +11,66 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
+using System.Web.Http.Cors;
+using Microsoft.Net.Http.Headers;
 
 namespace WebAPI
 {
-    public class Startup
+  public class Startup
+  {
+    readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+    public Startup(IConfiguration configuration)
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddControllers();
-            services.AddMvc().AddNewtonsoftJson(options =>
-            {
-                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-        }
+      Configuration = configuration;
     }
+
+    public IConfiguration Configuration { get; }
+
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+      services.AddControllers();
+      services.AddMvc().AddNewtonsoftJson(options =>
+      {
+        options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+      }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+      services.AddCors(options =>
+      {
+        options.AddPolicy(name: MyAllowSpecificOrigins,
+                          builder =>
+                          {
+                            builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                          });
+      });
+    }
+
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+      if (env.IsDevelopment())
+      {
+        app.UseDeveloperExceptionPage();
+      }
+      else
+      {
+        app.UseHsts();
+      }
+
+      app.UseHttpsRedirection();
+
+      app.UseRouting();
+
+      app.UseAuthorization();
+
+      app.UseCors(MyAllowSpecificOrigins);
+
+      app.UseEndpoints(endpoints =>
+      {
+        endpoints.MapControllers();
+      });
+    }
+  }
 }
