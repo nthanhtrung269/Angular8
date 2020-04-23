@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog'
 
 @Component({
   selector: 'app-add-dep',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddDepComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogBox: MatDialogRef<AddDepComponent>) { }
 
   ngOnInit(): void {
   }
 
+  onClose() {
+    this.dialogBox.close();
+  }
 }

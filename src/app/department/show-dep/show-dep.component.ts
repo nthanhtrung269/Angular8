@@ -3,6 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Department } from 'src/app/models/department-model';
 import { DepartmentService } from 'src/app/services/department.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AddDepComponent } from 'src/app/department/add-dep/add-dep.component';
 
 @Component({
   selector: 'app-show-dep',
@@ -11,7 +13,7 @@ import { DepartmentService } from 'src/app/services/department.service';
 })
 export class ShowDepComponent implements OnInit {
 
-  constructor(private service: DepartmentService) { }
+  constructor(private service: DepartmentService, private dialog: MatDialog) { }
 
   listData: MatTableDataSource<any>;
   displayedColumns: string[] = ['Options', 'DepartmentID', 'DepartmentName'];
@@ -35,11 +37,23 @@ export class ShowDepComponent implements OnInit {
     });
   }
 
+  applyFilter(filterValue: string) {
+    this.listData.filter = filterValue.trim().toLocaleLowerCase();
+  }
+
   onEdit(dep: Department) {
     console.log(dep);
   }
 
   onDelete(id: number) {
     console.log(id);
+  }
+
+  onAdd() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "70%";
+    this.dialog.open(AddDepComponent, dialogConfig);
   }
 }
