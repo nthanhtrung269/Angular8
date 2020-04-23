@@ -10,7 +10,7 @@ export class DepartmentService {
 
   constructor(private http: HttpClient) { }
 
-  readonly APIUrl = "http://localhost:49044/api";
+  readonly APIUrl = "https://localhost:44351/api";
 
   getDepList(): Observable<Department[]> {
     return this.http.get<Department[]>(this.APIUrl + "/deparment");
