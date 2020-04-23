@@ -34,6 +34,16 @@ namespace WebAPI.Controllers
                 {
                     DepartmentID = 2,
                     DepartmentName = "Finance"
+                },
+                new Department()
+                {
+                    DepartmentID = 3,
+                    DepartmentName = "Accounting"
+                },
+                new Department()
+                {
+                    DepartmentID = 4,
+                    DepartmentName = "HR"
                 }
             };
         }

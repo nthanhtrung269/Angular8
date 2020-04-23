@@ -1,7 +1,7 @@
 <div style="overflow: auto;">
     <div class="mat-elevation-z8">
 
-        <mat-table [dataSource]="listData">
+        <mat-table [dataSource]="listData" matSort>
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
@@ -18,12 +18,12 @@
             </ng-container>
 
             <ng-container matColumnDef="DepartmentID">
-                <mat-header-cell *matHeaderCellDef>DepartmentID</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>DepartmentID</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{element.DepartmentID}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="DepartmentName">
-                <mat-header-cell *matHeaderCellDef>DepartmentName</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>DepartmentName</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{element.DepartmentName}}</mat-cell>
             </ng-container>
         </mat-table>
