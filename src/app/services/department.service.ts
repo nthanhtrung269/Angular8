@@ -10,6 +10,8 @@ export class DepartmentService {
 
   constructor(private http: HttpClient) { }
 
+  formData: Department;
+
   readonly APIUrl = "https://localhost:44351/api";
 
   getDepList(): Observable<Department[]> {

@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -48,7 +49,8 @@ import { DepartmentService } from 'src/app/services/department.service';
     MatButtonModule,
     HttpClientModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   providers: [EmployeeService, DepartmentService],
   bootstrap: [AppComponent],
