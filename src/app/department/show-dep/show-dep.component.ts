@@ -5,6 +5,7 @@ import { Department } from 'src/app/models/department-model';
 import { DepartmentService } from 'src/app/services/department.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddDepComponent } from 'src/app/department/add-dep/add-dep.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-show-dep',
@@ -13,7 +14,7 @@ import { AddDepComponent } from 'src/app/department/add-dep/add-dep.component';
 })
 export class ShowDepComponent implements OnInit {
 
-  constructor(private service: DepartmentService, private dialog: MatDialog) { 
+  constructor(private service: DepartmentService, private dialog: MatDialog, private snackBar: MatSnackBar) { 
     this.service.listen().subscribe((m: any) => {
       console.log(m);
       this.refreshDepList();
@@ -51,7 +52,15 @@ export class ShowDepComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    console.log(id);
+    if(confirm('Are you sure to delete?')) {
+      this.service.deleteDepartment(id).subscribe(res => {
+        this.refreshDepList();
+        this.snackBar.open(res.toString(), '', {
+          duration: 3000,
+          verticalPosition: 'top'
+        });
+      });
+    }
   }
 
   onAdd() {

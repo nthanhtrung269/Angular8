@@ -53,5 +53,11 @@ namespace WebAPI.Controllers
     {
       return $"Add Department {department.DepartmentName} successfully";
     }
+
+    [HttpDelete("{id}")]
+    public ActionResult<string> Delete(string deparmentId)
+    {
+      return $"Delete DepartmentId {deparmentId} successfully";
+    }
   }
 }
