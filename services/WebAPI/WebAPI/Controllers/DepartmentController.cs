@@ -8,26 +8,26 @@ using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
-    [ApiController]
-    [Route("/api/[controller]")]
-    [Produces("application/json")]
-    public class DepartmentController : ControllerBase
+  [ApiController]
+  [Route("/api/[controller]")]
+  [Produces("application/json")]
+  public class DepartmentController : ControllerBase
+  {
+    private readonly ILogger<DepartmentController> _logger;
+
+    public DepartmentController(ILogger<DepartmentController> logger)
     {
-        private readonly ILogger<DepartmentController> _logger;
+      _logger = logger;
+    }
 
-        public DepartmentController(ILogger<DepartmentController> logger)
-        {
-            _logger = logger;
-        }
-
-        [HttpGet]
-        public ActionResult<List<Department>> Get()
-        {
-            return new List<Department>() 
-            { 
+    [HttpGet]
+    public ActionResult<List<Department>> Get()
+    {
+      return new List<Department>()
+            {
                 new Department()
                 {
-                    DepartmentID = 1, 
+                    DepartmentID = 1,
                     DepartmentName = "IT"
                 },
                 new Department()
@@ -46,6 +46,12 @@ namespace WebAPI.Controllers
                     DepartmentName = "HR"
                 }
             };
-        }
     }
+
+    [HttpPost]
+    public ActionResult<string> Post(Department department)
+    {
+      return $"Add Department {department.DepartmentName} successfully";
+    }
+  }
 }

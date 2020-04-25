@@ -29,10 +29,14 @@ export class AddDepComponent implements OnInit {
   }
 
   onClose() {
+    this.service.filter("Register click");
     this.dialogBox.close();
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
+    this.service.addDepartment(form.value).subscribe(res => {
+      this.resetForm(form);
+      alert(res);
+    });
   }
 }
