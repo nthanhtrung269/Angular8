@@ -12,7 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AddDepComponent implements OnInit {
 
-  constructor(public dialogBox: MatDialogRef<AddDepComponent>, public service: DepartmentService, private snackBar: MatSnackBar) { }
+  constructor(public dialogBox: MatDialogRef<AddDepComponent>, public service: DepartmentService, private snackBar: MatSnackBar) { 
+  }
 
   ngOnInit(): void {
     this.resetForm();

@@ -54,6 +54,12 @@ namespace WebAPI.Controllers
       return $"Add Department {department.DepartmentName} successfully";
     }
 
+    [HttpPut]
+    public ActionResult<string> Put(Department department)
+    {
+      return $"Update Department {department.DepartmentName} successfully";
+    }
+
     [HttpDelete("{id}")]
     public ActionResult<string> Delete(string deparmentId)
     {

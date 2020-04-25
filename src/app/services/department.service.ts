@@ -22,6 +22,10 @@ export class DepartmentService {
     return this.http.post(this.APIUrl + "/department", dep);
   }
 
+  updateDepartment(dep: Department) {
+    return this.http.put(this.APIUrl + "/department", dep);
+  }
+
   deleteDepartment(id: number) {
     return this.http.delete(this.APIUrl + "/department/" + id);
   }
